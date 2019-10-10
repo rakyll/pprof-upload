@@ -39,7 +39,7 @@ func main() {
 	flag.StringVar(&project, "project", "", "")
 	flag.StringVar(&zone, "zone", "", "")
 	flag.StringVar(&target, "target", "", "")
-	flag.StringVar(&version, "instance", "", "")
+	flag.StringVar(&version, "version", "", "")
 	flag.StringVar(&input, "i", "pprof.out", "")
 	flag.Usage = usageAndExit
 	flag.Parse()
