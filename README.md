@@ -39,7 +39,7 @@ $ pprof-upload -target=webserver
 https://console.cloud.google.com/profiler/webserver;type=CPU?project=PROJECT
 ```
 
-![Cloud Profiler Screenshot](https://i.imgur.com/KRQcmZ5.png)
+![Cloud Profiler Screenshot](https://i.imgur.com/JMUbzL9.png)
 
 ## Known issues
 
