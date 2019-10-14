@@ -40,7 +40,8 @@ var (
 	target  string
 	version string
 
-	input string
+	input    string
+	keepTime bool
 )
 
 const (
@@ -55,6 +56,7 @@ func main() {
 	flag.StringVar(&target, "target", "", "")
 	flag.StringVar(&version, "version", "", "")
 	flag.StringVar(&input, "i", "pprof.out", "")
+	flag.BoolVar(&keepTime, "keep-time", false, "")
 	flag.Usage = usageAndExit
 	flag.Parse()
 
@@ -99,9 +101,12 @@ func main() {
 func upload(ctx context.Context, payload []byte) error {
 	// Reset time, otherwise old profiles wont be shown
 	// at Cloud profiler due to data retention limits.
-	resetted, err := resetTime(payload)
-	if err != nil {
-		log.Printf("Cannot reset the profile's time: %v", err)
+	if !keepTime {
+		var err error
+		payload, err = resetTime(payload)
+		if err != nil {
+			log.Printf("Cannot reset the profile's time: %v", err)
+		}
 	}
 
 	req := &pb.CreateOfflineProfileRequest{
@@ -117,13 +122,13 @@ func upload(ctx context.Context, payload []byte) error {
 					"version": version,
 				},
 			},
-			ProfileBytes: resetted,
+			ProfileBytes: payload,
 		},
 	}
 
 	// TODO(jbd): Is there a way without having
 	// to load the profile all in memory?
-	_, err = client.CreateOfflineProfile(ctx, req)
+	_, err := client.CreateOfflineProfile(ctx, req)
 	return err
 }
 
@@ -147,12 +152,15 @@ func resetTime(pprofBytes []byte) ([]byte, error) {
 const usageText = `pprof-upload [-i pprof.out]
 
 Other options:
--project  Google Cloud project name, tries to automatically
-          resolve if none is set.
--zone     Google Cloud zone, tries to automatically resolve if
-		  none is set.
--target   Target profile name to upload data to.
--version  Version of the profiled program.
+-project    Google Cloud project name, tries to automatically
+            resolve if none is set.
+-zone       Google Cloud zone, tries to automatically resolve if
+		    none is set.
+-target     Target profile name to upload data to.
+-version    Version of the profiled program.
+-keep-time  When set, keeps the original time info from the profile file.
+			Due to data retention limits, Cloud Profiler won't
+            show data older than 30 days. By default, false.
 `
 
 func usageAndExit() {
