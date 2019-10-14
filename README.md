@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.com/rakyll/pprof-upload.svg?token=Quf3mWAszVwsMXDMWxkm&branch=master)](https://travis-ci.com/rakyll/pprof-upload)
 
-Uploads pprof files to Google Cloud Profiler.
+Uploads pprof files to [Stackdriver Profiler](https://cloud.google.com/profiler/).
 
 ## Requirements
 
-* Enable [Google Cloud Profiler API](https://console.cloud.google.com/apis/library/cloudprofiler.googleapis.com).
+* Enable [Stackdriver Profiler API](https://console.cloud.google.com/apis/library/cloudprofiler.googleapis.com).
 * If running outside of Google Compute Engine, install [gcloud](https://cloud.google.com/sdk/gcloud/) and run `gcloud auth application-default login`.
 
 ## Installation

@@ -93,7 +93,7 @@ func main() {
 	}
 
 	if err := upload(ctx, pprofBytes); err != nil {
-		log.Fatalf("Cannot upload to Google Cloud Profiler: %v", err)
+		log.Fatalf("Cannot upload to Stackdriver Profiler: %v", err)
 	}
 	fmt.Printf("https://console.cloud.google.com/profiler/%s;type=%s?project=%s\n", url.PathEscape(target), pb.ProfileType_CPU, project)
 }
@@ -159,7 +159,7 @@ Other options:
 -target     Target profile name to upload data to.
 -version    Version of the profiled program.
 -keep-time  When set, keeps the original time info from the profile file.
-			Due to data retention limits, Cloud Profiler won't
+			Due to data retention limits, Stackdriver Profiler won't
             show data older than 30 days. By default, false.
 `
 
