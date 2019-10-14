@@ -6,7 +6,7 @@ Uploads pprof files to Google Cloud Profiler.
 
 ## Requirements
 
-* Enable [Google Cloud Profiler](https://cloud.google.com/profiler/).
+* Enable [Google Cloud Profiler API](https://console.cloud.google.com/apis/library/cloudprofiler.googleapis.com).
 * If running outside of Google Compute Engine, install [gcloud](https://cloud.google.com/sdk/gcloud/) and run `gcloud auth application-default login`.
 
 ## Installation
