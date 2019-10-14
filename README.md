@@ -31,7 +31,7 @@ Windows 64-bit:
 ## Usage
 
 Capture pprof profiles, for example by using the
-[net/http/pprof](https://golang.org/pkg/net/http/pprof) package.
+[net/http/pprof](https://golang.org/pkg/net/http/pprof) package. See `examples/helloworld` for an example.
 
 ```
 $ curl http://localhost:6060/debug/pprof/profile?seconds=30 > pprof.out
