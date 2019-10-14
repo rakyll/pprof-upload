@@ -44,4 +44,3 @@ https://console.cloud.google.com/profiler/webserver;type=CPU?project=PROJECT
 ## Known issues
 
 * pprof-upload should recognize profile type from the input file.
-* pprof-upload resets profile time, it should be optional.
